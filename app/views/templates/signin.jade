@@ -1,0 +1,11 @@
+.container
+    .jumbotron
+        form.form-signin
+          h3.form-signin-heading Please sign in
+          input.form-control(type='text', placeholder='username', autofocus='autofocus')
+          input.form-control(type='password', placeholder='password')
+          .form-group
+            label(for='notification1') Remember me
+            .make-switch(data-animated='false', data-on-label='yes', data-off-label='no', data-on='success')
+              input#notification1(type='radio')
+          button.btn.btn-lg.btn-primary.btn-block.signin Sign in
