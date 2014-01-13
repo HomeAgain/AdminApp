@@ -26,6 +26,5 @@ module.exports = class SensorController extends Marionette.Controller
         sensor.fetch(
             success: =>
                 sensorEdit = new SensorEditView(model : sensor)
-                #sensorEdit.model = sensor     
                 @application.layout.content.show(sensorEdit)  
         )

@@ -42,9 +42,15 @@ class Application extends Backbone.Marionette.Application
       @layout.render()
 
     @addInitializer (options) =>
-      # Instantiate the router
+      # Instantiate the sensor router
       SensorRouter = require 'lib/sensor-router'
       @sensorRouter = new SensorRouter()
+  
+    @addInitializer (options) =>
+      # Instantiate the room router
+      RoomRouter = require 'lib/room-router'
+      @roomRouter = new RoomRouter()
+
 
     @start()
 
