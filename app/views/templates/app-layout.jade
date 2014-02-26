@@ -1,35 +1,18 @@
-extends layout
-
-block head
-  link(rel='stylesheet', href='/stylesheets/app.css')
-  //if IE 7
-    link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
-
-  script(src='/javascripts/head.js')
-
-block content
-  .navbar.navbar-inverse.navbar-fixed-top
-    .container
+.navbar.navbar-inverse.navbar-fixed-top
+  .container
       .navbar-inner
         .navbar-brand HomeAgain
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li: a(href="/admin", target="_blank") Admin
-  
-  .container#main-container
-    .col-md-3
-      .list-group#menu
-        a#menu-sensors.list-group-item(href ="/admin/sensors/") Sensors
-        a#menu-rooms.list-group-item(href="/admin/rooms/") Rooms
-      a.btn.btn-success(href="/admin/rooms/add/") Add room
-    .col-md-9    
-      #content
-    hr
-    footer#footer
-      p © HomeAgain 2013
 
-    
-block scripts
-  script(src='/socket.io/socket.io.js')
-  script(src='/javascripts/vendor.js')
-  script(src='/javascripts/app.js', defer, onload="require('initialize');")
+#main-container.container
+  .col-md-3
+    .list-group#menu
+      a#menu-sensors.list-group-item(href ="/sensor") Sensors
+      a#menu-rooms.list-group-item(href="/room") Rooms
+    a.btn.btn-success(href="/room/add") Add room
+  .col-md-9             
+    #content
+hr
+#footer.container
