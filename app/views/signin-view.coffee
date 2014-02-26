@@ -1,12 +1,42 @@
+Config = require 'config'
 module.exports = class SigninView extends Backbone.Marionette.ItemView
-  id: 'signin-view'
-  template: 'views/templates/signin'
-  events:
-    'click .signin': 'onSignin'
+    id: 'login-view'
+    template: 'views/templates/signin'
+    events:
+        'submit form': 'submit'
 
-  onSignin: (e) ->
-    console.log 'ssssssssssssss'
-    e.preventDefault()
+    submit: (e) ->
+        e.preventDefault();
+        username = $('#loginForm #username').val()
+        password = $('#loginForm #password').val()
+        $.ajax
+            contentType: 'application/json'
+            type: "POST"
+            url: Config.apiroot + Config.approot + 'login/'
+            data: JSON.stringify
+                username: username
+                password: password
 
-  onShow: ->
-    $('.make-switch').bootstrapSwitch()
+            success: (data) ->
+                if data.user_id && data.api_key
+                    application.user_id = data.user_id;
+                    application.api_key = data.api_key;
+
+                    $.cookie('homeagainuid', data.user_id, {
+                        expires: 7,
+                        path: '/'
+                    });
+                    $.cookie('homeagainak', data.api_key, {
+                        expires: 7,
+                        path: '/'
+                    });
+                    Backbone.history.navigate('/rooms', true);
+
+            
+            error: () ->
+                $('#loginForm #username').val('')
+                $('#loginForm #password').val('')
+            dataType: "json"
+
+        console.log "Form submitted"
+
