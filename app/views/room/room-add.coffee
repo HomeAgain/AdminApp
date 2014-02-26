@@ -1,14 +1,16 @@
 RoomAddForm = require 'views/templates/room/room-add-form'
-
+RoomModel = require 'models/room-model'
 module.exports = class RoomAdd extends Backbone.Marionette.ItemView
     id : 'room-add'
     template: 'views/templates/room/room-add'
-
+    model : new RoomModel()
     events:
         'click #add' : 'add'
 
-    add : (object) ->
+    add : (e) ->
+        e.preventDefault()
         @form.commit()
+
         @model.save null,
             success: (model, response) ->
                 console.log('Room added successfully')
