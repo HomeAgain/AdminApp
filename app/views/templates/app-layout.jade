@@ -1,52 +1,35 @@
-.navbar.navbar-inverse.navbar-fixed-top
-  .container
-      .navbar-header
-        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href='http://brunch.io') Brunch
-      .navbar-collapse.collapse
-        ul.nav.navbar-nav
-          li.active
-            a(href='/') Home
-          li
-            a(href='/about') About
-          li
-            a(href='/contact') Contact
-          li
-            a(href='/signin') Sign in
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
-              | Dropdown
-              b.caret
-            ul.dropdown-menu
-              li
-                a(href='#') Action
-              li
-                a(href='#') Another action
-              li
-                a(href='#') Something else here
-              li.divider
-              li.dropdown-header Nav header
-              li
-                a(href='#') Separated link
-              li
-                a(href='#') One more separated link
-        ul.nav.navbar-nav.navbar-right
-          li
-            a(href='#') Default
-          li.active
-            a(href='./') Static top
-          li
-            a(href='#') Fixed top
-#main-container.container
-  .col-md-3
-    .list-group#menu
-      a#menu-sensors.list-group-item(href ="/sensor") Sensors
-      a#menu-rooms.list-group-item(href="/room") Rooms
-    a.btn.btn-success(href="/room/add") Add room
-  .col-md-9             
-    #content
-hr
-#footer.container
+extends layout
+
+block head
+  link(rel='stylesheet', href='/stylesheets/app.css')
+  //if IE 7
+      link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
+  script(src='/javascripts/head.js')
+
+block content
+  .navbar.navbar-inverse.navbar-fixed-top
+    .container
+      .navbar-inner
+        .navbar-brand HomeAgain
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li: a(href="/admin", target="_blank") Admin
+          #LoginView
+  
+  .container#main-container
+    .col-md-3
+      .list-group#menu
+        a#menu-sensors.list-group-item(href ="/admin/sensors/") Sensors
+        a#menu-rooms.list-group-item(href="/admin/rooms/") Rooms
+      a.btn.btn-success(href="/admin/rooms/add/") Add room
+    .col-md-9    
+      #AppView
+    hr
+    footer
+      p © HomeAgain 2013
+
+    
+block scripts
+  script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/vendor.js')
+  script(src='/javascripts/app.js', defer, onload="require('initialize');")
