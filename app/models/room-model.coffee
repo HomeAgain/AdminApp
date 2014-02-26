@@ -1,8 +1,11 @@
+Config = require 'config'
+
 module.exports = class RoomModel extends Backbone.Model
-    urlRoot: 'http://localhost:4000/room/'
+    urlRoot: Config.apiroot + Config.approot +  'rooms/'
     idAttribute: 'room_id'
     
     defaults :
-        name: 'MyRoom'
+        name: ''
     schema:
-        name: 'Text'
+        name:
+            type : 'Text'

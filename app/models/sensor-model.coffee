@@ -1,5 +1,7 @@
+Config = require 'config'
+
 module.exports = class SensorModel extends Backbone.Model
-    urlRoot: 'http://localhost:4000/sensor/'
+    urlRoot: Config.apiroot + Config.approot +  'sensors/'
     idAttribute: 'sensor_id'
     defaults:
         name: 'MySensor'
