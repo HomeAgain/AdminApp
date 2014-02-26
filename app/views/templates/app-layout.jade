@@ -3,7 +3,8 @@ extends layout
 block head
   link(rel='stylesheet', href='/stylesheets/app.css')
   //if IE 7
-      link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
+    link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
+
   script(src='/javascripts/head.js')
 
 block content
@@ -14,7 +15,6 @@ block content
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li: a(href="/admin", target="_blank") Admin
-          #LoginView
   
   .container#main-container
     .col-md-3
@@ -23,9 +23,9 @@ block content
         a#menu-rooms.list-group-item(href="/admin/rooms/") Rooms
       a.btn.btn-success(href="/admin/rooms/add/") Add room
     .col-md-9    
-      #AppView
+      #content
     hr
-    footer
+    footer#footer
       p © HomeAgain 2013
 
     
