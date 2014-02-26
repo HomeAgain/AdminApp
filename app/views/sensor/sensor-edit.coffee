@@ -1,3 +1,5 @@
+Config = require 'config'
+
 module.exports = class SensorEdit extends Backbone.Marionette.ItemView
     id : 'sensor-edit'
     template: 'views/templates/sensor/sensor-edit'
@@ -8,6 +10,7 @@ module.exports = class SensorEdit extends Backbone.Marionette.ItemView
     # Update and save the model changes
     update: (object) ->
         @form.commit()
+
         @model.save(
             null,
             success: ->
@@ -19,7 +22,7 @@ module.exports = class SensorEdit extends Backbone.Marionette.ItemView
         super
         roomOptions = [{val: 0, label:"Unassigned"}]
         $.getJSON(
-            'http://localhost:4000/room/',
+            Config.apiroot + Config.approot +  'rooms/',
             (rooms) =>
                 rooms.forEach( (room) ->
                     roomOptions.push({ val: room['_id'], label: room['name'] })

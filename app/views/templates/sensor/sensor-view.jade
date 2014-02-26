@@ -4,7 +4,7 @@
         .panel-body
             .row
                 .col-sm-6.col-md-6.col-lg-6(style="border-right: 1px solid #aaa;")
-                    p Type : #{model}
-                    p ID : #{sensor_id}
+                    p Type : #{model.name}
+                    p ID : #{identifier}
                 .col-sm-6.col-md-6.col-lg-6
-                    a(href="/sensor/edit/#{sensor_id}") Edit
+                    a(href="/sensor/edit/#{identifier}") Edit

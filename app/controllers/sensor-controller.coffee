@@ -9,12 +9,13 @@ module.exports = class SensorController extends Marionette.Controller
 
     initialize: (options) ->
         @application = options.application
-  	#TODO Initialize
+        #TODO Initialize
 
     index: =>
         sensors = new SensorCollection()
         sensors.fetch(
-          success: =>
+          success: (t)=>
+            console.log t
             sensorsView = new SensorCollectionView({collection: sensors})
             @application.layout.content.show(sensorsView)
         )
