@@ -1,5 +1,6 @@
-SensorModel = require('models/sensor-model')
+SensorModel = require 'models/sensor-model'
+Config = require 'config'
 
 module.exports = class SensorCollection extends Backbone.Collection
-    url: 'http://127.0.0.1:4000/sensor/'
+    url: Config.apiroot + Config.approot +  'sensors/'
     model : SensorModel

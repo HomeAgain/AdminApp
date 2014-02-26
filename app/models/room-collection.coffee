@@ -1,5 +1,6 @@
-RoomModel = require('models/room-model');
+RoomModel = require 'models/room-model'
+Config = require 'config'
 
 module.exports = class RoomCollection extends Backbone.Collection
-    url: 'http://127.0.0.1:4000/room/'
+    url: Config.apiroot + Config.approot + 'rooms/'
     model : RoomModel

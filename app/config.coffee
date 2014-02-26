@@ -2,6 +2,6 @@
 class Config
   appcontainer: 'content'
   approot: '/'
-  apiroot: 'https://api.github.com/'
+  apiroot: 'http://127.0.0.1:4000'
 
 module.exports = new Config()
