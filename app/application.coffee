@@ -50,6 +50,11 @@ class Application extends Backbone.Marionette.Application
       # Instantiate the room router
       RoomRouter = require 'lib/room-router'
       @roomRouter = new RoomRouter()
+    
+    @addInitializer (options) =>
+      # Instantiate the general router
+      GeneralRouter = require 'lib/general-router'
+      @generalRouter = new GeneralRouter()  
 
 
     @start()
