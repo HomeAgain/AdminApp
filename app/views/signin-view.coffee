@@ -1,4 +1,6 @@
 Config = require 'config'
+application = require 'application'
+
 module.exports = class SigninView extends Backbone.Marionette.ItemView
     id: 'login-view'
     template: 'views/templates/signin'
@@ -8,7 +10,9 @@ module.exports = class SigninView extends Backbone.Marionette.ItemView
     submit: (e) ->
         e.preventDefault();
         username = $('#loginForm #username').val()
+        console.log username
         password = $('#loginForm #password').val()
+        console.log password
         $.ajax
             contentType: 'application/json'
             type: "POST"
@@ -30,7 +34,7 @@ module.exports = class SigninView extends Backbone.Marionette.ItemView
                         expires: 7,
                         path: '/'
                     });
-                    Backbone.history.navigate('/rooms', true);
+                    Backbone.history.navigate('/sensor', true);
 
             
             error: () ->

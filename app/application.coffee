@@ -1,5 +1,24 @@
 config = require 'config'
 
+addQSParm = (url, name, value) ->
+    re = new RegExp("([?&]" + name + "=)[^&]+", "")
+
+    add = (sep) ->
+        url += sep + name + "=" + encodeURIComponent(value)
+
+    change = () ->
+        url = url.replace(re, "$1" + encodeURIComponent(value))
+
+    if (url.indexOf("?") == -1)
+        add("?")
+    else
+        if (re.test(url))
+            change()
+        else
+            add("&")
+
+    return url
+
 class Application extends Backbone.Marionette.Application
 
   initialize: =>
@@ -10,7 +29,14 @@ class Application extends Backbone.Marionette.Application
         root: config.approot
 
       # Freeze the object
-      Object.freeze? this
+      # Object.freeze? this
+
+    @addInitializer (options) =>
+      user_id = $.cookie('homeagainuid')
+      api_key = $.cookie('homeagainak')
+      if (user_id && api_key)
+        this.user_id = user_id
+        this.api_key = api_key
 
     @addInitializer (options) =>
       # All navigation that is relative should be passed through the navigate
@@ -54,7 +80,24 @@ class Application extends Backbone.Marionette.Application
     @addInitializer (options) =>
       # Instantiate the general router
       GeneralRouter = require 'lib/general-router'
-      @generalRouter = new GeneralRouter()  
+      @generalRouter = new GeneralRouter() 
+
+    @addInitializer (options) =>
+      # Add an ajax prefilter
+      # to add user_id and api_key
+      application = this
+      $.ajaxPrefilter (options, originalOptions, jqXHR) ->
+        original_error = originalOptions.error
+        new_error = (jqXHR, textStatus, errorThrown) ->
+          if jqXHR.status == 401
+            Backbone.history.navigate('/signin', true)
+          else
+            original_error(jqXHR, textStatus, errorThrown)
+        options.error = new_error
+        if application.user_id and application.api_key
+          options.url = addQSParm(options.url, 'user_id', application.user_id)
+          options.url = addQSParm(options.url, 'api_key', application.api_key)
+        return 
 
 
     @start()
