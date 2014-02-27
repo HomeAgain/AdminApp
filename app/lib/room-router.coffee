@@ -7,3 +7,4 @@ module.exports = class RoomRouter extends Marionette.AppRouter
   appRoutes: 
     'room(/)': 'index'
     'room/add(/)': 'add'
+    'room/edit/:room_id': 'edit'

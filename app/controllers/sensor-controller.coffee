@@ -23,9 +23,12 @@ module.exports = class SensorController extends Marionette.Controller
     edit: (sensor_id) =>
         console.log sensor_id
         sensor = new SensorModel()
-        sensor.set({'sensor_id', sensor_id})
+        sensor.set('_id', sensor_id)
+        console.log sensor
         sensor.fetch(
-            success: =>
+            success: (data)=>
+                console.log data 
+                console.log sensor
                 sensorEdit = new SensorEditView(model : sensor)
                 @application.layout.content.show(sensorEdit)  
         )

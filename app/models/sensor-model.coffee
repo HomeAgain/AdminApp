@@ -5,21 +5,29 @@ module.exports = class SensorModel extends Backbone.Model
 
     idAttribute: '_id'
     defaults:
-        name: 'MySensor'
+        name: 'Sensor'
     
     schema:
         name: 'Text'
-        sensor_id:
+        identifier:
             title : 'ID'
             editorAttrs:
                 disabled: true
-        model:
-            type: 'Select'
-            title : 'Model'
-            options: ['temperature', 'door']
+        model: 
+            type: 'Object'
+            subSchema: 
+                name:
+                    type: 'Select'
+                    title : 'Model'
+                    options: ['temperature', 'door', 'moisture', 'presence']
+                _id :
+                    type : 'Hidden'
+                __v :
+                    type : 'Hidden'
             editorAttrs:
-                disabled: true
-        room_id:
+                    disabled: true
+                
+        room:
             type: 'Select'
             title : 'Room'
             options: ->

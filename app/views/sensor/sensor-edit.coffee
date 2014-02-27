@@ -9,6 +9,7 @@ module.exports = class SensorEdit extends Backbone.Marionette.ItemView
 
     # Update and save the model changes
     update: (object) ->
+        console.log object
         @form.commit()
 
         @model.save(
@@ -20,6 +21,7 @@ module.exports = class SensorEdit extends Backbone.Marionette.ItemView
         
     render: ->
         super
+        console.log @model
         roomOptions = [{val: 0, label:"Unassigned"}]
         $.getJSON(
             Config.apiroot + Config.approot +  'rooms/',
@@ -27,7 +29,7 @@ module.exports = class SensorEdit extends Backbone.Marionette.ItemView
                 rooms.forEach( (room) ->
                     roomOptions.push({ val: room['_id'], label: room['name'] })
                 )
-                @model.schema.room_id.options = roomOptions
+                @model.schema.room.options = roomOptions
                 @model.schema.model.editorAttrs = { disabled: true }
                 
                 @form = new Backbone.Form({
