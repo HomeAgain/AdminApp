@@ -1,10 +1,14 @@
 .col-sm-6.col-md-6.col-lg-6
-    .panel.panel-primary
-        .panel-heading.text-center #{name}
+    .panel(class=sensor_class)
+        .panel-heading.text-center #{name} 
+            if typeof room == 'undefined'
+                span.label.label-danger Unassigned
         .panel-body
             .row
                 .col-sm-6.col-md-6.col-lg-6(style="border-right: 1px solid #aaa;")
-                    p Type : #{model.name}
                     p ID : #{identifier}
+                    p Type : #{model.name}
                 .col-sm-6.col-md-6.col-lg-6
                     a(href="/sensor/edit/#{identifier}") Edit
+                    
+                    

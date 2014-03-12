@@ -5,7 +5,7 @@ module.exports = class SensorModel extends Backbone.Model
 
     idAttribute: '_id'
     defaults:
-        name: 'Sensor'
+        name: ''
     
     schema:
         name: 'Text'
