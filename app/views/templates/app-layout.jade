@@ -1,7 +1,9 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .container
       .navbar-inner
-        .navbar-brand HomeAgain
+        .navbar-brand
+          a(href="/admin", target="_blank", style="color:#999;")
+            <img src="/homeagain_menubar.jpg" width="20px" style="position:relative; top:-3px; margin-right:20px;"> HomeAgain
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li: a(href="/admin", target="_blank") Admin
@@ -12,7 +14,7 @@
       a#menu-sensors.list-group-item(href ="/sensor") Sensors
       a#menu-rooms.list-group-item(href="/room") Rooms
     a.btn.btn-success(href="/room/add") Add room
-  .col-md-9             
+  .col-md-9
     #content
 hr
 #footer.container
